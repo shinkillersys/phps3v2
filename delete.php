@@ -10,8 +10,8 @@ $keyname = 'assets/images/test.jpg';
 
 // AWS Info
 $bucketName = 'buckettestbp';
-$IAM_KEY = 'AKIARDK6SKHKBGHTLKNN';
-$IAM_SECRET = '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';
+$IAM_KEY = 'AKIARDK6SKHKBGH';
+$IAM_SECRET = 'RXVWnyNVS4hxHXsNTrErvzo';
 $S3_REGION = 'ap-southeast-1';
 // Connect to AWS
 try {
