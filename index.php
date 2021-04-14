@@ -6,8 +6,8 @@ require 'vendor/autoload.php';
 
 	// AWS Info
 	$bucketName = 'buckettestbp';
-	$IAM_KEY = 'AKIARDK6SKHKBGHTLKNN';
-	$IAM_SECRET = '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';
+	$IAM_KEY = 'XXX';
+	$IAM_SECRET = 'XXX';
     $S3_REGION = 'ap-southeast-1';
 	// Connect to AWS
 	try {
