@@ -30,11 +30,10 @@ require 'vendor/autoload.php';
 	}
 
 	
-	$fileURL = 'assets/images/test.jpg'; // Change this
+	$fileURL = 'assets/images/profile.jpg'; // Change this
 
 	// For this, I would generate a unqiue random string for the key name. But you can do whatever.
 	$keyName = 'assets/images/' . basename($fileURL);
-	$pathInS3 = 'https://s3.$S3_REGION.amazonaws.com/' . $bucketName . '/' . $keyName;
 
 	// Add it to S3
 	try {

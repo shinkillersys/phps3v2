@@ -1,3 +1,4 @@
+//Dùng vòng for để upload folder.
 <?php
 
 require 'vendor/autoload.php';
@@ -5,8 +6,9 @@ require 'vendor/autoload.php';
 use Aws\S3\S3Client;
 use Aws\S3\Exception\S3Exception;
 
+
 // AWS Info
-$bucket = 'buckettestbp';
+$bucketName = 'buckettestbp';
 $IAM_KEY = 'XXX';
 $IAM_SECRET = 'XXX';
 $S3_REGION = 'ap-southeast-1';
@@ -29,19 +31,25 @@ try {
     // return a json object.
     die("Error: " . $e->getMessage());
 }
-$keyname = 'assets/images/test.jpg';
-// 1. Delete the object from the bucket.
-try
-{
-    echo 'Attempting to delete ' . $keyname . '...' . PHP_EOL;
 
-    $s3->deleteObject([
-        'Bucket' => $bucket,
-        'Key'    => $keyname
+// 1. Delete the object from the bucket.
+$dir = "/home/thinh/Desktop/phps3v2/assets/images/*";
+
+//For each file in your directory run the putObject S3 Api function
+foreach (glob($dir) as $file) {
+    $file_name = str_replace('/home/thinh/Desktop/phps3v2/assets/images', '', $file);
+    echo "Upload File Key : ".$file_name . "\n";
+    echo "Upload File Path : ".$file. "\n \n";
+    $result = $s3->putObject([
+        'Bucket' => $bucketName,
+        'Key'    => 'assets/images'.$file_name,
+        'Body' => fopen($file, 'r+')
     ]);
-    echo 'done';
-}
-catch (S3Exception $e) {
-    exit('Error: ' . $e->getAwsErrorMessage() . PHP_EOL);
+
+    // Wait for the file to be uploaded and accessible :
+    $s3->waitUntil('ObjectExists', array(
+      'Bucket' => $bucketName,
+      'Key'    => 'assets/images'.$file_name
+  ));
 }
 ?>

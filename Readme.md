@@ -14,12 +14,20 @@ Install AWS SDK:
 
 Run:
 
-    UpLoad:
+    UpLoad File:
 
         php index.php
 
-    Delete:
+    Delete File:
 
         php delete.php
+    
+    UpLoad Folder using Foreach:
+
+        php folder.php
+
+    UpLoad Folder using AWS Transfer:
+
+        php sync.php
 
 
